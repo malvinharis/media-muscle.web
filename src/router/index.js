@@ -1,23 +1,69 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: Home
+  // },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+        path: "",
+        name: "home",
+        meta: {
+          title: "Home",
+          subject: "Home"
+        },
+        component: () => import("../views/Home")
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: "/login",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+        path: "",
+        name: "login",
+        meta: {
+          title: "Login",
+          subject: "Login"
+        },
+        component: () => import("../views/Login")
+      }
+    ]
+    },
+    {
+      path: "/register",
+      component: () => import("../components/layout/LayoutBase"),
+      children: [{
+        path: "",
+        name: "register",
+        meta: {
+          title: "Register",
+          subject: "Register"
+        },
+        component: () => import("../views/Register")
+      }]
+    },
+    {
+      path: "/forgot-password",
+      component: () => import("../components/layout/LayoutBase"),
+      children: [{
+        path: "",
+        name: "forgot-password",
+        meta: {
+          title: "Forgot Password",
+          subject: "Forgot Password"
+        },
+        component: () => import("../views/ForgotPassword")
+      }]
+    }
+
 ]
 
 const router = new VueRouter({

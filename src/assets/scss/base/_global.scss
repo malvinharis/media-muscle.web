@@ -1,0 +1,168 @@
+// @import url('https://rsms.me/inter/inter.css');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+@mixin for-desktop {
+  @media screen and (min-width: $desktop-min) {
+    @content;
+  }
+}
+
+html {
+  font-size: $--font-size-base;
+
+  @supports (font-variation-settings: normal) {
+    font-family: "Gotham Bold",
+    sans-serif !important;
+  }
+}
+
+body {
+  // display: grid;
+  // place-items: center;
+  min-height: 100vh;
+  background-color: $color--primary;
+  color: $color--text-reguler;
+  overflow: hidden;
+}
+
+.v-enter-active,
+.v-leave-active,
+.animated {
+  animation-duration: 0.5s !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+.no-underline {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.sf-sidebar__aside {
+  z-index: 5000;
+}
+
+.sf-list__item{
+  padding: .5rem 0;
+  &.active {
+    .sf-menu-item__label {
+      font-weight: 600;
+      color: $--color-black;
+    }
+  }
+}
+
+#__nuxt,
+#__layout {
+  height: 100vh;
+}
+
+.viewport {
+  @include debugger(grey);
+
+  // width: $app-width;
+  // height: calc(#{$app-width} * (9/16));
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  // display: grid;
+  // grid-template-columns: 16vmax auto;
+  // background-color: $color--primary;
+}
+
+// .sf-image__img{
+//   height: 100% !important;
+//   height: auto;
+//   object-fit: cover;
+// }
+.gmap-info-window{
+  width: 20vw;
+  & span{
+    font-weight: 500;
+  }
+}
+
+.main {
+  @include debugger(purple);
+
+  display: block;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  height: auto;
+  min-height: 80vh;
+
+  &__wrapper,
+  &__body {
+    height: 100%;
+    width: 100%;
+  }
+
+  // &__body {
+  //   padding: 12vh 0 0;
+  // }
+}
+
+.button{
+  &__help{
+    position: fixed;
+    right: 1rem;
+    bottom: .9rem;
+    border-radius: 100%;
+    z-index: 1000;
+    background: white;
+    height: 3rem;
+    width: 3rem;
+
+    @include for-desktop{
+      right: 2rem;
+    }
+
+    cursor: pointer;
+    a {
+      cursor: pointer;
+      // padding: .9rem 2rem;
+      // @include for-desktop {
+      //   padding: 1rem 2rem;
+      // }
+      // span {
+      //     font-weight: 500;
+      //     color: white;
+      // }
+      img{
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bg-gradient-primary{
+  background: linear-gradient(45deg, hsla(35, 98%, 54%, 1) 0%, hsla(328, 100%, 47%, 1) 35%, hsla(321, 87%, 41%, 1) 65%, hsla(257, 47%, 35%, 1) 100%);
+}

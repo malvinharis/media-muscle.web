@@ -1,0 +1,22 @@
+// Variables
+@import "vendors/shared/styles/variables";
+@import "base/variables";
+
+// Mixins
+@import "base/mixins";
+
+// Global
+@import "base/global";
+
+// Components
+
+// Custom
+// @import "~@storefront-ui/shared/styles/helpers/visibility";
+@import "base/custom";
+
+// Layouts
+@import "layouts/navigation";
+@import "layouts/footer";
+
+// Vendor
+// @import "vendors/tailwindcss/tailwind.css";
