@@ -1,3 +1,3 @@
 "scripts": {
-  "start": "npm run serve"
+  "start": "vue-cli-service serve"
 }
