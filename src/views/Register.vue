@@ -18,6 +18,7 @@
                 v-model="form.name"
                 :rules="nameRules"
                 label="Name"
+                append-icon="mdi-account"
                 outlined
                 required
               ></v-text-field>
@@ -27,6 +28,7 @@
                 v-model="form.phone"
                 :rules="phoneRules"
                 label="Phone Number"
+                append-icon="mdi-phone"
                 outlined
                 required
               ></v-text-field>
@@ -69,6 +71,7 @@
                 v-model="email"
                 :rules="[emailRules.required, emailRules.format]"
                 label="E-mail"
+                append-icon="mdi-email"
                 outlined
                 required
               ></v-text-field>
@@ -80,6 +83,7 @@
                 :items="nationalities"
                 :rules="[(v) => !!v || 'Item is required']"
                 label="Nationality"
+                append-icon="mdi-flag"
                 outlined
                 required
               ></v-select>
@@ -90,6 +94,7 @@
                 v-model="form.npwp"
                 :rules="npwpRules"
                 label="NPWP"
+                append-icon="mdi-card-account-details"
                 outlined
                 required
               ></v-text-field>
@@ -110,6 +115,7 @@
                   readonly
                   v-bind="attrs"
                   v-on="on"
+                  append-icon="mdi-calendar"
                   outlined
                 ></v-text-field>
               </template>
@@ -127,6 +133,7 @@
                 v-model="form.idCard"
                 :rules="idCardRules"
                 label="ID Card"
+                append-icon="mdi-card-account-details"
                 outlined
                 required
               ></v-text-field>
@@ -138,6 +145,7 @@
                 v-model="form.address"
                 :rules="addressRules"
                 label="Address"
+                append-icon="mdi-map-marker"
                 rows="1"
                 outlined
                 required
@@ -189,7 +197,7 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     lazy: true,
-    nationalities: ["Jakarta", "Bandung", "Surabaya"],
+    nationalities: ["Indonesia", "Germany", "England"],
   }),
   mounted() {
     this.registerType = "Personal"

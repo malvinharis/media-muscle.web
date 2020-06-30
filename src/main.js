@@ -5,6 +5,8 @@ import store from './store'
 import 'babel-polyfill'
 import vuetify from '@/plugins/vuetify'
 import "@/assets/scss/main.scss";
+// Plugin
+import "./plugins/animate.js";
 
 Vue.config.productionTip = false
 
