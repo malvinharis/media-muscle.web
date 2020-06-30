@@ -2,19 +2,19 @@
   <div class="main__home">
     <div class="main__home-banner">
       <v-carousel
-          cycle
-          hide-delimiter-background
-          hide-arrows-on-hover
-          :show-arrows="false"
-          :light="true"
+        cycle
+        hide-delimiter-background
+        hide-arrows-on-hover
+        :show-arrows="false"
+        :light="true"
+      >
+        <v-carousel-item
+          v-for="(slide, i) in slides"
+          :key="i"
         >
-          <v-carousel-item
-            v-for="(slide, i) in slides"
-            :key="i"
-          >
-          <div class="main__home-banner__title">{{ slide }}</div>
-          </v-carousel-item>
-        </v-carousel>
+        <div class="main__home-banner__title">{{ slide }}</div>
+        </v-carousel-item>
+      </v-carousel>
     </div>
     <div class="main__home-category">
       <div class="main__home-category__item">
