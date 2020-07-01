@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   // {
   //   path: '/',
   //   name: 'Home',
@@ -12,64 +12,82 @@ Vue.use(VueRouter)
   {
     path: "/",
     component: () => import("../components/layout/LayoutBase"),
-    children: [{
+    children: [
+      {
         path: "",
         name: "home",
         meta: {
           title: "Home",
-          subject: "Home"
+          subject: "Home",
         },
-        component: () => import("../views/Home")
-      }
-    ]
+        component: () => import("../views/Home"),
+      },
+    ],
   },
   {
     path: "/login",
     component: () => import("../components/layout/LayoutBase"),
-    children: [{
+    children: [
+      {
         path: "",
         name: "login",
         meta: {
           title: "Login",
-          subject: "Login"
+          subject: "Login",
         },
-        component: () => import("../views/Login")
-      }
-    ]
-    },
-    {
-      path: "/register",
-      component: () => import("../components/layout/LayoutBase"),
-      children: [{
+        component: () => import("../views/Login"),
+      },
+    ],
+  },
+  {
+    path: "/register",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [
+      {
         path: "",
         name: "register",
         meta: {
           title: "Register",
-          subject: "Register"
+          subject: "Register",
         },
-        component: () => import("../views/Register")
-      }]
-    },
-    {
-      path: "/forgot-password",
-      component: () => import("../components/layout/LayoutBase"),
-      children: [{
+        component: () => import("../views/Register"),
+      },
+    ],
+  },
+  {
+    path: "/forgot-password",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [
+      {
         path: "",
         name: "forgot-password",
         meta: {
           title: "Forgot Password",
-          subject: "Forgot Password"
+          subject: "Forgot Password",
         },
-        component: () => import("../views/ForgotPassword")
-      }]
-    }
-
-]
+        component: () => import("../views/ForgotPassword"),
+      },
+    ],
+  },
+  {
+    path: "/order",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+      path: ":type",
+      name: "order",
+      meta: {
+        title: "Order",
+        subject: "Order",
+      },
+      component: () => import("../views/Order"),
+    }, ],
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

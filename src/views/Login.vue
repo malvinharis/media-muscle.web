@@ -25,6 +25,7 @@
                 v-model="email"
                 :rules="[emailRules.required,emailRules.format]"
                 label="E-mail"
+                append-icon="mdi-email"
                 outlined
                 required
               ></v-text-field>
@@ -81,6 +82,7 @@
                 v-model="email"
                 :rules="[emailRules.format]"
                 label="E-mail"
+                append-icon="mdi-email"
                 outlined
               ></v-text-field>
 
