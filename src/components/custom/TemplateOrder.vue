@@ -1,57 +1,66 @@
 <template>
   <div class="main__order">
     <div class="main__form">
-      <div class="main__form-head">
-        <div class="main__form-head__title">
-          <span>Television</span>
-        </div>
-      </div>
       <div class="main__form-body">
         <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-          <v-row>
-            <v-col cols="6">
-              <v-text-field
-                v-model="password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[passwordRules.required, passwordRules.min]"
-                :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
-                label="New Password"
-                hint="At least 8 characters"
-                counter
-                outlined
-                @click:append="show1 = !show1"
-              ></v-text-field>
-            </v-col>
+          <v-stepper v-model="stepper">
+            <v-stepper-header>
+              <v-stepper-step color="#472F83" :complete="stepper > 1" step="1">Pick a Date</v-stepper-step>
 
+              <v-stepper-step color="#472F83" :complete="stepper > 2" step="2">Name of step 2</v-stepper-step>
 
-            <v-col cols="6">
-              <v-text-field
-                v-model="password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[passwordRules.required, passwordRules.min]"
-                :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
-                label="Confirm Password"
-                hint="At least 8 characters"
-                counter
-                outlined
-                @click:append="show1 = !show1"
-              ></v-text-field>
-            </v-col>
+              <v-stepper-step color="#472F83" step="3">Name of step 3</v-stepper-step>
+            </v-stepper-header>
 
-          </v-row>
+            <v-stepper-items>
+              <v-stepper-content step="1">
+                <v-date-picker color="#472F83" v-model="form.date" :min="new Date().toISOString().substr(0, 10)"></v-date-picker>
 
-          <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-4"
-            large
-            block
-            @click="validate"
-          >
-            Submit
-          </v-btn>
+                <v-btn
+                  color="primary"
+                  @click="stepper = 2"
+                >
+                  Continue
+                </v-btn>
+
+                <v-btn text>Cancel</v-btn>
+              </v-stepper-content>
+
+              <v-stepper-content step="2">
+                <v-card
+                  class="mb-12"
+                  color="grey lighten-1"
+                  height="200px"
+                ></v-card>
+
+                <v-btn
+                  color="primary"
+                  @click="stepper = 3"
+                >
+                  Continue
+                </v-btn>
+
+                <v-btn text @click="stepper = 1">Cancel</v-btn>
+              </v-stepper-content>
+
+              <v-stepper-content step="3">
+                <v-card
+                  class="mb-12"
+                  color="grey lighten-1"
+                  height="200px"
+                ></v-card>
+
+                <v-btn
+                  color="primary"
+                  @click="stepper = 1"
+                >
+                  Continue
+                </v-btn>
+
+                <v-btn text>Cancel</v-btn>
+              </v-stepper-content>
+            </v-stepper-items>
+          </v-stepper>
         </v-form>
       </div>
     </div>
@@ -62,8 +71,10 @@
 export default {
   data: () => ({
     valid: true,
+    stepper: 1,
     form: {
       password: "",
+      date: new Date().toISOString().substr(0, 10),
     },
     passwordRules: {
       required: (value) => !!value || "Password is required",

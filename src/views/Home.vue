@@ -17,36 +17,13 @@
       </v-carousel>
     </div>
     <div class="main__home-category">
-      <div class="main__home-category__item">
+      <div class="main__home-category__item" v-for="(item, idx) in categories" :key="idx"
+      @click="goToOrder(item)">
         <div class="main__home-category__item-image">
-          <img src="../assets/television.jpg" alt="">
+          <img :src="item.image" alt="">
         </div>
         <span class="main__home-category__item-title">
-          Television
-        </span>
-      </div>
-      <div class="main__home-category__item">
-        <div class="main__home-category__item-image">
-          <img src="../assets/radio.jpg" alt="">
-        </div>
-        <span class="main__home-category__item-title">
-          Radio
-        </span>
-      </div>
-      <div class="main__home-category__item">
-        <div class="main__home-category__item-image">
-          <img src="../assets/newspaper.jpg" alt="">
-        </div>
-        <span class="main__home-category__item-title">
-          Newspaper
-        </span>
-      </div>
-      <div class="main__home-category__item">
-        <div class="main__home-category__item-image">
-          <img src="../assets/billboard.jpg" alt="">
-        </div>
-        <span class="main__home-category__item-title">
-          Out of Home
+          {{item.title}}
         </span>
       </div>
     </div>
@@ -57,7 +34,30 @@
 export default {
   data: () => ({
     slides: [`A Hassel-free ways to advertise in various media`, `A Hassel-free ways to advertise in various media`],
-  })
+    categories: [
+      {
+        title: 'Television',
+        image: require('../assets/television.jpg')
+      },
+      {
+        title: 'Radio',
+        image: require('../assets/radio.jpg')
+      },
+      {
+        title: 'Newspaper',
+        image: require('../assets/newspaper.jpg')
+      },
+      {
+        title: 'Out of Home',
+        image: require('../assets/billboard.jpg')
+      }
+    ]
+  }),
+  methods:{
+    goToOrder(item){
+      this.$router.push({ name: "order" ,params: {type: item.title, data: item}});
+    }
+  }
 }
 </script>
 
