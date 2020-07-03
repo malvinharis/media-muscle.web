@@ -113,6 +113,19 @@ const routes = [
       component: () => import("../views/History"),
     }, ],
   },
+  {
+    path: "/help",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+      path: "",
+      name: "help",
+      meta: {
+        title: "Help",
+        subject: "Help",
+      },
+      component: () => import("../views/Help"),
+    }, ],
+  },
 ];
 
 const router = new VueRouter({
