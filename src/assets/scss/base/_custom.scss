@@ -392,5 +392,33 @@
         text-align: end;
       }
     }
+
+    &-history {
+      width: 75rem;
+
+      &__header {
+        display: grid;
+        align-items: center;
+        justify-content: space-between;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        &-item {
+          display: flex;
+        }
+      }
+
+      &__label {
+        padding-right: 2rem;
+        font-weight: 600;
+      }
+
+      .main__trx-cart__item {
+        width: 40rem;
+      }
+
+      .v-item-group {
+        padding-bottom: 2rem;
+      }
+    }
   }
 }

@@ -100,6 +100,19 @@ const routes = [
       component: () => import("../views/Cart"),
     }, ],
   },
+  {
+    path: "/history",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+      path: "",
+      name: "history",
+      meta: {
+        title: "History",
+        subject: "History",
+      },
+      component: () => import("../views/History"),
+    }, ],
+  },
 ];
 
 const router = new VueRouter({
