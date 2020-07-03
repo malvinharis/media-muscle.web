@@ -1,15 +1,18 @@
-import Vue from 'vue'
+import Vue from "vue";
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+import authentication from './modules/authentication'
+import notify from './modules/notify'
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+Vue.use(Vuex);
+
+const Store = () => {
+  return new Vuex.Store({
+    modules: {
+      authentication,
+      notify
+    }
+  })
+}
+
+export default Store

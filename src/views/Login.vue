@@ -2,9 +2,7 @@
   <div class="main__home bg-gradient-primary">
     <div class="main__home-banner">
       <div class="main__home-banner__title white--text">
-        Welcome
-        to a revolutionary
-        step in advertising your brand
+        Welcome to a revolutionary step in advertising your brand
       </div>
     </div>
     <div class="main__home-form">
@@ -16,14 +14,10 @@
             </div>
           </div>
           <div class="main__form-body">
-            <v-form
-              ref="form"
-              v-model="valid"
-              :lazy-validation="lazy"
-            >
+            <v-form ref="form" v-model="valid" :lazy-validation="lazy">
               <v-text-field
                 v-model="email"
-                :rules="[emailRules.required,emailRules.format]"
+                :rules="[emailRules.required, emailRules.format]"
                 label="E-mail"
                 append-icon="mdi-email"
                 outlined
@@ -31,17 +25,17 @@
               ></v-text-field>
 
               <v-text-field
-              v-model="password"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[passwordRules.required, passwordRules.min]"
-              :type="show1 ? 'text' : 'password'"
-              name="input-10-1"
-              label="Password"
-              hint="At least 8 characters"
-              counter
-              outlined
-              @click:append="show1 = !show1"
-            ></v-text-field>
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[passwordRules.required, passwordRules.min]"
+                :type="showPassword ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                hint="At least 8 characters"
+                counter
+                outlined
+                @click:append="showPassword = !showPassword"
+              ></v-text-field>
 
               <v-btn
                 :disabled="!valid"
@@ -49,16 +43,22 @@
                 class="mr-4"
                 large
                 block
-                @click="validate"
+                @click="handleSubmit"
               >
                 Sign In
               </v-btn>
 
               <div class="main__form-addtional">
-                <div class="main__form-additional__item"><a href="#" @click="isForm = 'ForgotPassword'">Forgot your password ?</a>
+                <div class="main__form-additional__item">
+                  <a href="#" @click="isForm = 'ForgotPassword'"
+                    >Forgot your password ?</a
+                  >
                 </div>
                 <div class="main__form-additional__item">
-                  <span>Don't have an account? <router-link to="/register">Register Now</router-link></span>
+                  <span
+                    >Don't have an account?
+                    <router-link to="/register">Register Now</router-link></span
+                  >
                 </div>
               </div>
             </v-form>
@@ -73,13 +73,9 @@
             </div>
           </div>
           <div class="main__form-body">
-            <v-form
-              ref="form"
-              v-model="valid"
-              :lazy-validation="lazy"
-            >
+            <v-form ref="form" v-model="valid" :lazy-validation="lazy">
               <v-text-field
-                v-model="email"
+                v-model="form.email"
                 :rules="[emailRules.format]"
                 label="E-mail"
                 append-icon="mdi-email"
@@ -96,7 +92,8 @@
                 Send Password Reset Link
               </v-btn>
               <div class="main__form-addtional">
-                <div class="main__form-additional__item"><a href="#" @click="isForm = 'Login'">Back to Login</a>
+                <div class="main__form-additional__item">
+                  <a href="#" @click="isForm = 'Login'">Back to Login</a>
                 </div>
               </div>
             </v-form>
@@ -108,39 +105,66 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      isForm: 'ForgotPassword',
-      valid: true,
-      email: '',
-      emailRules: {
-        required: v => !!v || 'E-mail is required',
-        format: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      },
-      password: '',
-      passwordRules: {
-          required: value => !!value || 'Password is required',
-          min: v => v.length >= 8 || 'Min 8 characters'
-      },
-      lazy: true,
-    }),
-    mounted(){
-      this.isForm = 'Login'
+export default {
+  data: () => ({
+    isForm: "ForgotPassword",
+    valid: true,
+    showPassword: false,
+    form: {
+      email: "alvinharis08@gmail.com",
+      password: "asdasdasd",
     },
-    methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
+    email: "",
+    password: "",
+    emailRules: {
+      required: (v) => !!v || "E-mail is required",
+      format: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     },
-  }
+    passwordRules: {
+      required: (value) => !!value || "Password is required",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+    },
+    lazy: true,
+  }),
+  mounted() {
+    this.isForm = "Login";
+  },
+  methods: {
+    async validate() {
+      this.$refs.form.validate();
+    },
+    async handleSubmit() {
+      const form = {
+        email: this.email,
+        password: this.password,
+      };
+      const response = await this.$store.dispatch("postAuthentication", form);
+      console.log(response);
+      if (response === true) {
+        const notify = {
+          isNotify: true,
+          message: "Login Success",
+          status: "SUCCESS",
+        };
+
+        this.$store.dispatch("queryNotify", notify);
+
+        this.$router.push({ path: "/" });
+      } else {
+        const notify = {
+          isNotify: true,
+          message: "Incorrect Email / Password, Please Try Again ",
+          status: "ERROR",
+        };
+
+        this.$store.dispatch("queryNotify", notify);
+      }
+    },
+    sendPasswordReset() {
+      console.log("reset pass");
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

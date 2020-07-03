@@ -166,3 +166,9 @@ a {
 .bg-gradient-primary{
   background: linear-gradient(45deg, hsla(35, 98%, 54%, 1) 0%, hsla(328, 100%, 47%, 1) 35%, hsla(321, 87%, 41%, 1) 65%, hsla(257, 47%, 35%, 1) 100%);
 }
+
+.v-snack{
+  &--top{
+    margin-top: .75rem;
+  }
+}

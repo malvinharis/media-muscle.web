@@ -6,11 +6,15 @@
       </router-link>
     </div>
     <div class="nav__menu-list">
-      <div class="nav__menu-item" v-for="(item, index) in navigations" :key="index">
+      <div
+        class="nav__menu-item"
+        v-for="(item, index) in navigations"
+        :key="index"
+      >
         <router-link :to="item.to" class="nav__menu-button">
           <v-btn tile color="#8F53A1">
-            <v-icon dark left small>mdi-{{item.icon}}</v-icon>
-          {{ item.title }}
+            <v-icon dark left small>mdi-{{ item.icon }}</v-icon>
+            {{ item.title }}
           </v-btn>
         </router-link>
       </div>
@@ -62,28 +66,56 @@ export default {
   // },
   data: () => ({
     navigations: [
+      // {
+      //   type: "item",
+      //   subject: "Login",
+      //   title: "Login",
+      //   icon: "login",
+      //   to: "/login"
+      // },
+      // {
+      //   type: "item",
+      //   subject: "Register",
+      //   title: "Register",
+      //   icon: "account-plus",
+      //   to: "/register"
+      // },
+      // {
+      //   type: "item",
+      //   subject: "Help",
+      //   title: "Need Help",
+      //   icon: "help",
+      //   to: "/help"
+      // }
       {
         type: "item",
-        subject: "Login",
-        title: "Login",
-        icon: "login",
-        to: "/login"
+        subject: "Cart",
+        title: "Cart",
+        icon: "cart",
+        to: "/cart",
       },
       {
         type: "item",
-        subject: "Register",
-        title: "Register",
-        icon: "account-plus",
-        to: "/register"
+        subject: "History",
+        title: "History",
+        icon: "history",
+        to: "/history",
       },
       {
         type: "item",
         subject: "Help",
         title: "Need Help",
         icon: "help",
-        to: "/help"
-      }
-    ]
+        to: "/help",
+      },
+      {
+        type: "item",
+        subject: "Account",
+        title: "Account",
+        icon: "account",
+        to: "/account",
+      },
+    ],
   }),
   methods: {
     handleOpen(key, keyPath) {
@@ -91,7 +123,7 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    }
-  }
+    },
+  },
 };
 </script>

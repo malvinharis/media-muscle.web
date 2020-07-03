@@ -3,15 +3,48 @@
     <div class="main__form">
       <div class="main__form-head">
         <div class="main__form-title">
-          <span>Register</span>
+          <span>My Account</span>
         </div>
+
         <v-tabs color="#472F83">
           <v-tab @click="registerType = 'Personal'">Personal</v-tab>
-          <v-tab @click="registerType = 'Company'">Company</v-tab>
         </v-tabs>
       </div>
       <div class="main__form-body">
         <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+          <v-row align="center" justify="center">
+            <v-card class="main__form-profile">
+              <v-img
+                :src="`https://picsum.photos/500/300?image=1`"
+                :lazy-src="`https://picsum.photos/10/6?image=1`"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              >
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                large
+                block
+                @click="validate"
+              >
+                Change Photo Profile
+              </v-btn>
+            </v-card>
+          </v-row>
           <v-row>
             <v-col cols="6">
               <v-text-field
@@ -42,21 +75,6 @@
                 :type="show1 ? 'text' : 'password'"
                 name="input-10-1"
                 label="Password"
-                hint="At least 8 characters"
-                counter
-                outlined
-                @click:append="show1 = !show1"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="6">
-              <v-text-field
-                v-model="form.confirmPassword"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[passwordRules.required, passwordRules.min]"
-                :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
-                label="Confirm Password"
                 hint="At least 8 characters"
                 counter
                 outlined
@@ -150,16 +168,32 @@
             </v-col>
           </v-row>
 
-          <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-4"
-            large
-            block
-            @click="validate"
-          >
-            Sign Up
-          </v-btn>
+          <v-row class="px-15">
+            <v-col cols="6">
+              <v-btn
+                :disabled="!valid"
+                color="info"
+                class="mr-4"
+                large
+                block
+                @click="validate"
+              >
+                Cancel
+              </v-btn>
+            </v-col>
+            <v-col cols="6">
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                large
+                block
+                @click="validate"
+              >
+                Submit
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-form>
       </div>
     </div>
