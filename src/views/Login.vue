@@ -16,7 +16,7 @@
           <div class="main__form-body">
             <v-form ref="form" v-model="valid" :lazy-validation="lazy">
               <v-text-field
-                v-model="email"
+                v-model="form.email"
                 :rules="[emailRules.required, emailRules.format]"
                 label="E-mail"
                 append-icon="mdi-email"
@@ -25,7 +25,7 @@
               ></v-text-field>
 
               <v-text-field
-                v-model="password"
+                v-model="form.password"
                 :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="[passwordRules.required, passwordRules.min]"
                 :type="showPassword ? 'text' : 'password'"
@@ -43,6 +43,7 @@
                 class="mr-4"
                 large
                 block
+                :loading="loading"
                 @click="handleSubmit"
               >
                 Sign In
@@ -105,6 +106,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data: () => ({
     isForm: "ForgotPassword",
@@ -126,6 +129,11 @@ export default {
     },
     lazy: true,
   }),
+  computed: {
+    ...mapState({
+      loading: (state) => state.authentication.loading,
+    }),
+  },
   mounted() {
     this.isForm = "Login";
   },
@@ -135,12 +143,11 @@ export default {
     },
     async handleSubmit() {
       const form = {
-        email: this.email,
-        password: this.password,
+        email: this.form.email,
+        password: this.form.password,
       };
       const response = await this.$store.dispatch("postAuthentication", form);
-      console.log(response);
-      if (response === true) {
+      if (response) {
         const notify = {
           isNotify: true,
           message: "Login Success",

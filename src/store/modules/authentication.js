@@ -53,13 +53,14 @@ const actions = {
       const {
         data
       } = await AxiosWeb.post(API.WEB.LOGIN, form);
-      if (data.status) {
-        const token = data.data.token;
+      if (data.message === 'success') {
+        const token = data.token;
         JwtService.saveToken(token);
         setTokenAxiosWeb(token);
+        console.log(setTokenAxiosWeb(token))
 
-        commit("UPDATE_AUTHENTICATION", data.data);
-        commit("ADD_TOKEN", data.data.token);
+        commit("UPDATE_AUTHENTICATION", data);
+        commit("ADD_TOKEN", data.token);
 
         return true;
       } else {
@@ -81,11 +82,10 @@ const actions = {
       try {
         const {
           data
-        } = await AxiosWeb.get(API.WEB.REFRESH);
-        if (data.status) {
-          commit("UPDATE_AUTHENTICATION", data.data);
-          commit("ADD_ABILITIES", data.data.role.permission);
-          return data.data;
+        } = await AxiosWeb.get(API.WEB.GET_ME);
+        if (data.message === 'success') {
+          commit("UPDATE_AUTHENTICATION", data);
+          return data;
         } else {
           throw data.message;
         }

@@ -194,6 +194,20 @@
               </v-btn>
             </v-col>
           </v-row>
+          <v-row class="px-15">
+            <v-col cols="12">
+              <v-btn
+                :disabled="!valid"
+                color="error"
+                class="mr-4"
+                large
+                block
+                @click="logout"
+              >
+                Logout
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-form>
       </div>
     </div>
@@ -262,6 +276,10 @@ export default {
     },
     save(date) {
       this.$refs.menu.save(date);
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push({ name: "login" });
     },
   },
 };

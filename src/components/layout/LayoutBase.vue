@@ -19,13 +19,26 @@
 </template>
 
 <script>
-import TemplateMessage from "../custom/TemplateMessage"
+import TemplateMessage from "../custom/TemplateMessage";
 import Navigation from "../navigation/Navigation";
+import JwtService from "@/plugins/utils/services/jwt.service";
 
 export default {
   components: {
     Navigation,
-    TemplateMessage
-  }
+    TemplateMessage,
+  },
+  async created() {
+    const token = JwtService.getToken();
+    if (token) {
+      await this.$store.dispatch("initToken");
+      this.isCheckToken = false;
+      this.isLoading = false;
+    } else {
+      this.$router.push({ name: "login" });
+    }
+    // console.log('Parent')
+    // console.log(init)
+  },
 };
 </script>

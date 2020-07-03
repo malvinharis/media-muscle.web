@@ -13,11 +13,12 @@
 }
 
 html {
+  overflow: hidden;
   font-size: $--font-size-base;
 
   @supports (font-variation-settings: normal) {
     font-family: "Gotham Bold",
-    sans-serif !important;
+      sans-serif !important;
   }
 }
 
@@ -65,8 +66,9 @@ a {
   z-index: 5000;
 }
 
-.sf-list__item{
+.sf-list__item {
   padding: .5rem 0;
+
   &.active {
     .sf-menu-item__label {
       font-weight: 600;
@@ -99,9 +101,10 @@ a {
 //   height: auto;
 //   object-fit: cover;
 // }
-.gmap-info-window{
+.gmap-info-window {
   width: 20vw;
-  & span{
+
+  & span {
     font-weight: 500;
   }
 }
@@ -129,8 +132,8 @@ a {
   // }
 }
 
-.button{
-  &__help{
+.button {
+  &__help {
     position: fixed;
     right: 1rem;
     bottom: .9rem;
@@ -140,13 +143,15 @@ a {
     height: 3rem;
     width: 3rem;
 
-    @include for-desktop{
+    @include for-desktop {
       right: 2rem;
     }
 
     cursor: pointer;
+
     a {
       cursor: pointer;
+
       // padding: .9rem 2rem;
       // @include for-desktop {
       //   padding: 1rem 2rem;
@@ -155,7 +160,7 @@ a {
       //     font-weight: 500;
       //     color: white;
       // }
-      img{
+      img {
         height: 100%;
         width: 100%;
       }
@@ -163,12 +168,12 @@ a {
   }
 }
 
-.bg-gradient-primary{
+.bg-gradient-primary {
   background: linear-gradient(45deg, hsla(35, 98%, 54%, 1) 0%, hsla(328, 100%, 47%, 1) 35%, hsla(321, 87%, 41%, 1) 65%, hsla(257, 47%, 35%, 1) 100%);
 }
 
-.v-snack{
-  &--top{
+.v-snack {
+  &--top {
     margin-top: .75rem;
   }
 }

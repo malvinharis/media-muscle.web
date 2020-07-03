@@ -6,18 +6,34 @@
       </router-link>
     </div>
     <div class="nav__menu-list">
-      <div
-        class="nav__menu-item"
-        v-for="(item, index) in navigations"
-        :key="index"
-      >
-        <router-link :to="item.to" class="nav__menu-button">
-          <v-btn tile color="#8F53A1">
-            <v-icon dark left small>mdi-{{ item.icon }}</v-icon>
-            {{ item.title }}
-          </v-btn>
-        </router-link>
-      </div>
+      <template v-if="!authentication.isAuthenticated">
+        <div
+          class="nav__menu-item"
+          v-for="(item, index) in navigations"
+          :key="index"
+        >
+          <router-link :to="item.to" class="nav__menu-button">
+            <v-btn tile color="#8F53A1">
+              <v-icon dark left small>mdi-{{ item.icon }}</v-icon>
+              {{ item.title }}
+            </v-btn>
+          </router-link>
+        </div>
+      </template>
+      <template v-else>
+        <div
+          class="nav__menu-item"
+          v-for="(item, index) in authNavigations"
+          :key="index"
+        >
+          <router-link :to="item.to" class="nav__menu-button">
+            <v-btn tile color="#8F53A1">
+              <v-icon dark left small>mdi-{{ item.icon }}</v-icon>
+              {{ item.title }}
+            </v-btn>
+          </router-link>
+        </div>
+      </template>
     </div>
     <!-- <el-menu
       default-active="1"
@@ -58,6 +74,7 @@
 <script>
 // import NavigationItem from "./NavigationItem";
 // import NavigationList from "./NavigationList";
+import { mapState } from "vuex";
 
 export default {
   // components: {
@@ -66,27 +83,29 @@ export default {
   // },
   data: () => ({
     navigations: [
-      // {
-      //   type: "item",
-      //   subject: "Login",
-      //   title: "Login",
-      //   icon: "login",
-      //   to: "/login"
-      // },
-      // {
-      //   type: "item",
-      //   subject: "Register",
-      //   title: "Register",
-      //   icon: "account-plus",
-      //   to: "/register"
-      // },
-      // {
-      //   type: "item",
-      //   subject: "Help",
-      //   title: "Need Help",
-      //   icon: "help",
-      //   to: "/help"
-      // }
+      {
+        type: "item",
+        subject: "Login",
+        title: "Login",
+        icon: "login",
+        to: "/login",
+      },
+      {
+        type: "item",
+        subject: "Register",
+        title: "Register",
+        icon: "account-plus",
+        to: "/register",
+      },
+      {
+        type: "item",
+        subject: "Help",
+        title: "Need Help",
+        icon: "help",
+        to: "/help",
+      },
+    ],
+    authNavigations: [
       {
         type: "item",
         subject: "Cart",
@@ -117,6 +136,11 @@ export default {
       },
     ],
   }),
+  computed: {
+    ...mapState({
+      authentication: (state) => state.authentication,
+    }),
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

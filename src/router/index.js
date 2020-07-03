@@ -87,6 +87,19 @@ const routes = [
       component: () => import("../views/Order"),
     }, ],
   },
+  {
+    path: "/cart",
+    component: () => import("../components/layout/LayoutBase"),
+    children: [{
+      path: "",
+      name: "cart",
+      meta: {
+        title: "Cart",
+        subject: "Cart",
+      },
+      component: () => import("../views/Cart"),
+    }, ],
+  },
 ];
 
 const router = new VueRouter({
