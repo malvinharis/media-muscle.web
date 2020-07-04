@@ -7,6 +7,7 @@ import vuetify from '@/plugins/vuetify'
 import "@/assets/scss/main.scss";
 // Plugin
 import "./plugins/animate.js";
+import "./plugins/vue2-google-maps.js"
 
 Vue.config.productionTip = false
 

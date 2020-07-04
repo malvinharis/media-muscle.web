@@ -1,9 +1,15 @@
 import Navigation from "./navigation/Navigation";
-import TemplateOrder from "./custom/TemplateOrder"
+import TemplateOrderTelevision from "./custom/TemplateOrderTelevision"
+import TemplateOrderRadio from "./custom/TemplateOrderRadio"
+import TemplateOrderNewspaper from "./custom/TemplateOrderNewspaper"
+import TemplateOrderOOH from "./custom/TemplateOrderOOH"
 import TemplateMessage from "./custom/TemplateMessage"
 
 export {
   Navigation,
-  TemplateOrder,
+  TemplateOrderTelevision,
+  TemplateOrderRadio,
+  TemplateOrderNewspaper,
+  TemplateOrderOOH,
   TemplateMessage
 };

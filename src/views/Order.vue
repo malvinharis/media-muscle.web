@@ -9,7 +9,18 @@
       </span>
     </div>
     <template v-if="!isDone">
-      <TemplateOrder @progress-done="handleDone" />
+      <template v-if="this.$route.params.data.title === 'Television'">
+        <TemplateOrderTelevision @progress-done="handleDone" />
+      </template>
+      <template v-else-if="this.$route.params.data.title === 'Radio'">
+        <TemplateOrderRadio @progress-done="handleDone" />
+      </template>
+      <template v-else-if="this.$route.params.data.title === 'Newspaper'">
+        <TemplateOrderNewspaper @progress-done="handleDone" />
+      </template>
+      <template v-else-if="this.$route.params.data.title === 'Out of Home'">
+        <TemplateOrderOOH @progress-done="handleDone" />
+      </template>
     </template>
     <template v-else>
       <div class="main__order-finish">
@@ -30,9 +41,19 @@
 </template>
 
 <script>
-import { TemplateOrder } from "@/components";
+import {
+  TemplateOrderTelevision,
+  TemplateOrderRadio,
+  TemplateOrderNewspaper,
+  TemplateOrderOOH,
+} from "@/components";
 export default {
-  components: { TemplateOrder },
+  components: {
+    TemplateOrderTelevision,
+    TemplateOrderRadio,
+    TemplateOrderNewspaper,
+    TemplateOrderOOH,
+  },
   data: () => ({
     slides: [
       `A Hassel-free ways to advertise in various media`,
